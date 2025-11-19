@@ -1,0 +1,143 @@
+filetype: prisma
+
+detect:
+    filename: "\\.prisma$|\\.pris$"
+
+rules:
+    - statement: "\\b(inicio|início|fim|enquanto|quebre|repita|ate|até|se|senaose|senãose|entao|então|senao|senão|para|em|funcao|função|local|retorne|vapara)\\b"
+    - statement: "\\b(nao|não|e|ou)\\b"
+    - statement: "\\b(debug|string|mat|tabela|es|corrotina|sis|utf8|bit32)\\b\\."
+    - statement: "\\b(_ENV|_G|_VERSAO|tente|coletelixo|executearquivo|erro|obtvarambiente|obtmetatabela|ipares|carregue|carreguearquivo|modulo|proximo|pares|pchame|imprima|igual|obt|tamanho|def|inclua|selecione|defvarambiente|defmetatabela|convnumero|convstring|tipo|desempacote|xpchame)\\s*\\("
+    - identifier: "es\\.\\b(feche|esvazie|entrada|linhas|abra|saida|pabra|leia|tmparquivo|tipo|escreva)\\b"
+    - identifier: "mat\\.\\b(absoluto|arcocosseno|arcosseno|arcotangente2|arcotangente|arredondeacima|cossenoh|cosseno|emGrau|emgrau|exp|arredondeabaixo|corte|cmodulo|frexp|huge|infinito|ldexp|log10|log|maximo|maximointeiro|minimo|minimonteiro|separe|pi|elevado|emRadianos|emradianos|aleatorio|xaleatorio|seno|raizquadrada|raisquad|tangente|convinteiro|tipo|ult|tangenteh|raizcubica|hipotenuza|arredonde)\\b"
+    - identifier: "sis\\.\\b(relogio|durma|data|diftempo|execute|saia|obtvarambiente|defvarambiente|delvarambiente|caminho_absoluto|remova|renomeie|deflocal|tempo|nometmp|tamanho|nome_arquivo|copie_arquivo)\\b"
+    - identifier: "pacote\\.\\b(buscadores|importe|carregadores|tudo|carregado|config|plib|clib)\\b"
+    - identifier: "string\\.\\b(utf8separe|tamanho|junte|nconcat|utf8cods|utf8tamanho|formate|base64|troque|apare|utf8insira|utf8inverta|substring|cod|hex|sub|utf8escape|utf8maiuscula|dec_base64|separe|utf8charpattern|utf8ncasecmp|utf8titulo|utf8cod|utf8larg|utf8proximo|utf8troque|dec_hex|utf8capte|utf8carpos|utf8largindex|car|utf8procure|utf8car|procure|utf8minuscula|utf8byte|utf8offset|inverta|utf8fold|utf8corte|minuscula|byte|utf8remova|utf8pontocod|corte|compile|maiuscula|capte|analise)\\b"
+    - identifier: "tabela\\.\\b(insira|crie|copie|filtre|junte|remova|adicione|map|maxn|reduza|concat|empacote|ordene|desempacote)\\b"
+    - identifier: "utf8\\.\\b(insira|pontocod|tamanho|remova|titulo|cods|fold|offset|car|carpos|procure|troque|byte|separe|inverta|largindex|capte|minuscula|proximo|larg|cod|corte|ncasecmp|maiuscula|charpattern|escape)\\b"
+    - identifier: "corrotina\\.\\b(yield|exec|crie|ceda|estado|envolva|wrap|executando)\\b"
+    - identifier: "debug\\.\\b(debug|getfenv|gethook|getinfo|getlocal|getmetatable|getregistry|getupvalue|getuservalue|setfenv|sethook|setlocal|setmetatable|setupvalue|setuservalue|traceback|upvalueid|upvaluejoin)\\b"
+    - identifier: "bit32\\.\\b(lshift|rrotate|bou|lrotate|arshift|extract|bnao|rshift|replace|bteste|bxou|be)\\b"
+    - identifier: "\\:\\b(feche|esvazie|linhas|leia|busque|defvbuf|escreva|utf8separe|tamanho|junte|nconcat|utf8cods|utf8tamanho|formate|base64|troque|apare|utf8insira|utf8inverta|substring|cod|hex|sub|utf8escape|utf8maiuscula|dec_base64|separe|utf8charpattern|utf8ncasecmp|utf8titulo|utf8cod|utf8larg|utf8proximo|utf8troque|dec_hex|utf8capte|utf8carpos|utf8largindex|car|utf8procure|utf8car|procure|utf8minuscula|utf8byte|utf8offset|inverta|utf8fold|utf8corte|minuscula|byte|utf8remova|utf8pontocod|corte|compile|maiuscula|capte|analise)\\b"
+    - identifier: "\\b(este|args)\\b"
+    - constant: "\\b(falso|nulo|verdadeiro)\\b"
+    - statement: "(\\b(executearquivo|inclua|importe)|%q|%!|%Q|%r|%x)\\b"
+
+    - symbol.brackets: "[(){}\\[\\]]"
+    - symbol: "(\\*|//|/|%|\\+|-|\\^|>|>=|<|<=|~=|=|[\\.]{2,3}|#)"
+
+    - constant.number: "\\b((0[xX](([0-9A-Fa-f]+\\.[0-9A-Fa-f]*)|(\\.?[0-9A-Fa-f]+))([pP][-+]?[0-9]+)?)|((([0-9]+\\.[0-9]*)|(\\.?[0-9]+))([eE][-+]?[0-9]+)?))"
+
+    - constant.string:
+        start: "\""
+        end: "\""
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\([abfnrtvz\\'\"]|[0-9]{1,3}|x[0-9a-fA-F][0-9a-fA-F]|u\\{[0-9a-fA-F]+\\})"
+
+    - constant.string:
+        start: "'"
+        end: "'"
+        skip: "\\\\."
+        rules:
+            - constant.specialChar: "\\\\([abfnrtvz\\'\"]|[0-9]{1,3}|x[0-9a-fA-F][0-9a-fA-F]|u\\{[0-9a-fA-F]+\\})"
+
+    - constant.string:
+        start: "\\[\\["
+        end: "\\]\\]"
+        rules: []
+
+# support first few lengths of "long brackets" explicitly
+# brackets longer than that will give false positives
+
+    - constant.string:
+        start: "\\[=\\["
+        end: "\\]=\\]"
+        rules: []
+
+    - constant.string:
+        start: "\\[==\\["
+        end: "\\]==\\]"
+        rules: []
+
+    - constant.string:
+        start: "\\[===\\["
+        end: "\\]===\\]"
+        rules: []
+
+    - constant.string:
+        start: "\\[====+\\["
+        end: "\\]====+\\]"
+        rules: []
+
+    - comment.block:
+        start: "\\-\\-\\[\\["
+        end: "\\]\\]"
+        rules:
+            - todo: "(TODO|NOTE|FIXME):?"
+            
+#comentario bloco Prisma:
+    - comment.block:
+        start: "\\/\\*"
+        end: "\\*\\/"
+        rules:
+            - todo: "(TODO|NOTE|FIXME):?"
+#suporte documentação:
+    - comment.block:
+        start: "\\/\\*\\*"
+        end: "\\*\\/"
+        rules:
+            - todo: "(resumo|param|retorno|fn|parag|codigo|bloco|var|autor|fonte|versao):?"
+
+#suporte documentação:
+    - comment.block:
+        start: "\\-\\-\\[\\[\\["
+        end: "\\]=\\]"
+        rules:
+            - todo: "(resumo|param|retorno|fn|parag|codigo|bloco|var|autor|fonte|versao):?"
+
+#mantendo comentários em bloco Lua com [=...[:
+
+    - comment.block:
+        start: "\\-\\-\\[=\\["
+        end: "\\]=\\]"
+        rules:
+            - todo: "(TODO|NOTE|FIXME):?"
+
+    - comment.block:
+        start: "\\-\\-\\[==\\["
+        end: "\\]==\\]"
+        rules:
+            - todo: "(TODO|NOTE|FIXME):?"
+
+    - comment.block:
+        start: "\\-\\-\\[===\\["
+        end: "\\]===\\]"
+        rules:
+            - todo: "(TODO|NOTE|FIXME):?"
+
+    - comment.block:
+        start: "\\-\\-\\[====+\\["
+        end: "\\]====+\\]"
+        rules:
+            - todo: "(TODO|NOTE|FIXME):?"
+
+# Isto deve estar depois dos comentários em bloco, senão os comentários em bloco não funcionam!
+
+#mantendo estilo comentario linha unica Lua:
+    - comment:
+        start: "\\-\\-"
+        end: "$"
+        rules:
+            - todo: "(TODO|NOTE|FIXME):?"
+
+
+    - comment:
+        start: "\\/\\/"
+        end: "$"
+        rules:
+            - todo: "(TODO|NOTE|FIXME):?"
+            
+            
+            
+            

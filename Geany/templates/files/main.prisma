@@ -1,0 +1,8 @@
+//exemplo ola mundo
+
+funcao principal() 
+
+    imprima("Olá mundo!");
+ 
+     retorne 0;
+fim

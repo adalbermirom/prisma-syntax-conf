@@ -1,0 +1,30 @@
+{
+	"name":"prisma",
+	"displayName":"%displayName%",
+	"description":"%description%",
+	"version":"1.0.0",
+	"publisher":"vscode",
+	"license":"MIT",
+	"engines":{"vscode":"*"},
+	"scripts":{
+		"update-grammar":"node ../node_modules/vscode-grammar-updater/bin sumneko/prisma.tmbundle Syntaxes/Prisma.plist ./syntaxes/prisma.tmLanguage.json"
+		},
+		"contributes":{
+			"languages":[
+			    {"id":"prisma",
+					"extensions":[".prisma"],
+					"aliases":["Prisma","prisma"],
+					"configuration":"./language-configuration.json"
+				}
+			],
+			"grammars":[
+			    {
+					"language":"prisma",
+					"scopeName":"source.prisma",
+					"path":"./syntaxes/prisma.tmLanguage.json",
+					"tokenTypes":{"comment.line.double-dash.doc.prisma":"other"}
+				}
+			]
+		},
+		"repository":{"type":"git","url":"https://github.com/microsoft/vscode.git"}
+}

@@ -1,0 +1,17 @@
+# Arquivos e diretórios ignorados pelo Git
+# não apague-me!
+
+# Pacotes Gerados do VS Code
+*.vsix
+vscode-prisma/*.vsix
+vscode-prisma/src/*.vsix
+
+# Logs e Dados de Build
+*.log
+*.tmp
+/build
+/dist
+
+# Configurações do Sistema Operacional (macOS, Windows, Linux)
+.DS_Store
+Thumbs.db

@@ -1,0 +1,126 @@
+# prisma.nanorc — realce de sintaxe para a linguagem Prisma
+# Criado por Adalberto linguagemprisma.br4.biz
+# github: https://github.com/adalbermirom/linguagemprisma
+#
+# Licença MIT
+#
+# Copyright (c) 2025 (seu nome)
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+
+## Highlighting para a linguagem Prisma
+syntax "prisma" "\.prisma$"
+
+
+## ------------------------------
+## Palavras-chave da linguagem
+## ------------------------------
+color brightcyan "\<(inicio|início|fim|enquanto|repita|ate|até|se|senaose|senãose|entao|então|senao|senão|para|em|funcao|função|local|retorne|quebre)\>"
+
+## ------------------------------
+## Constantes booleanas e especiais
+## ------------------------------
+color brightred "\<(verdadeiro|falso|nulo)\>"
+
+## ------------------------------
+## Operadores
+## ------------------------------
+color brightyellow "(\+|\-|\*|/|%|\^|=|<>|>=|<=|>|<|\.\.)"
+color brightyellow "\<(e|ou|nao)\>"
+
+#funções string lib:
+color brightcyan "\<(string|utf8separe|tamanho|junte|nconcat|utf8cods|utf8tamanho|formate|base64|troque|apare|utf8insira|utf8inverta|substring|cod|hex|sub|utf8escape|utf8maiuscula|dec_base64|separe|utf8charpattern|utf8ncasecmp|utf8titulo|utf8cod|utf8larg|utf8proximo|utf8troque|dec_hex|utf8capte|utf8carpos|utf8largindex|car|utf8procure|utf8car|procure|utf8minuscula|utf8byte|utf8offset|inverta|utf8fold|utf8corte|minuscula|byte|utf8remova|utf8pontocod|corte|compile|maiuscula|capte|analise
+)\>"
+#funcoes da lib bit32
+color brightcyan "\<(bit32|lshift|rrotate|bou|lrotate|arshift|extract|bnao|rshift|replace|bteste|bxou|be)\>"
+
+#funcoes da lib debug:
+color brightcyan "\<(debug|getinfo|upvalueid|gethook|setmetatable|getregistry|setlocal|traceback|getmetatable|getuservalue|sethook|upvaluejoin|getupvalue|setuservalue|debug|getlocal|setupvalue)\>"
+
+#funcoes da lib corrotina
+color brightcyan "\<(corrotina|yield|exec|crie|ceda|estado|envolva|wrap|executando)\>"
+
+#funcoes da lib utf8
+color brightcyan "\<(utf8|insira|pontocod|tamanho|remova|titulo|cods|fold|offset|car|carpos|procure|troque|byte|separe|inverta|largindex|capte|minuscula|proximo|larg|cod|corte|ncasecmp|maiuscula|charpattern|escape)\>"
+
+#lib sis:
+color brightcyan "\<(sis|data|delvarambiente|tamanho|remova|saia|defvarambiente|renomeie|diftempo|arq|obtvarambiente|nome_arquivo|durma|tempo|execute|relogio|caminho_absoluto|copie_arquivo|nometmp|deflocal|nome)\>"
+
+#funcoes da lib tabela
+color brightcyan "\<(tabela|insira|crie|copie|filtre|junte|remova|adicione|map|maxn|reduza|concat|empacote|ordene|desempacote)\>"
+
+
+#lib pacote
+color brightcyan "\<(pacote|buscadores|importe|carregadores|tudo|carregado|config|plib|pasta|precarregado|clib)\>"
+
+
+#funcoes da lib mat
+color brightcyan "\<(mat|ldexp|xrandonico|arcotangente2|log|pi|cosseno|arredondeacima|arcotangente|minimo|emGrau|raizquad|arcocosseno|cossenoh|exp|randonico|log10|separe|arredondeabaixo|tangenteh|cmodulo|infinito|senoh|xaleatorio|absoluto|arredonde|tangente|aleatorio|hipot|frexp|raizcubica|emRadianos|raiz|arcoseno|elevado|maximo|seno|corte)\>"
+
+# lib es
+color brightcyan "\<(feche|esvazie|entrada|linhas|abra|saida|pabra|leia|tmparquivo|tipo|escreva)\>"
+
+
+#_G
+color brightcyan "\<(tamanho|def|prismadir|escolha|executestring|coletelixo|_INFO|obtmetatabela|executearquivo|args|poe|pacote|cod|mat|bit32|carreguearquivo|_G|Classe|string|pchame|inclua|ipares|tipo|debug|car|utf8|sis|carregue|es|leia|Th|desempacote|F|contador|modulo|corrotina|B|convstring|convnumero|selecione|pares|defmetatabela|erro|_VERSAO|obt|igual|imprimaf|V|U|T|S|proximo|imprima|tabela|xpchame|N|tente)\>"
+## ------------------------------
+## Números
+## ------------------------------
+## Inteiros ou decimais
+
+color brightred "\<[0-9]+(\.[0-9]+)?([Ee][+-]?[0-9]+)?\>"
+
+
+## Hexadecimais
+color brightred "\<0x[0-9a-fA-F]+\>"
+## ------------------------------
+## Delimitadores e símbolos
+## ------------------------------
+color brightyellow "[\{\}\[\]\(\)]"
+
+## ------------------------------
+## Shebang
+## ------------------------------
+color brightcyan "^#!.*"
+
+##-------------------------------
+## Strings
+##-------------------------------
+## Strings entre aspas duplas
+color green ""([^"\\]|\\.)*""
+
+## Strings entre aspas simples
+color green "'([^'\\]|\\.)*'"
+
+
+## ------------------------------
+## Comentários
+## ------------------------------
+comment "//"
+color blue "//.*"
+
+## Blocos de comentário estilo C
+color blue start="/\*" end="\*/"
+
+## Strings longas estilo [[ ... ]]
+color green start="\[\[" end="\]\]"
+
+
+
