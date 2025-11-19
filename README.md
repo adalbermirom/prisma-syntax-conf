@@ -47,10 +47,10 @@ Substitua [extensão] pelo nome da coluna "Comando" para usar nos seus comandos 
 
 1. Clonar o Repositório
 
-Baixe o projeto e entre na pasta:git 
+Baixe o projeto e entre na pasta: 
 
 ```bash
-clone https://github.com/adalbermirom/prisma-syntax-conf.git
+git clone https://github.com/adalbermirom/prisma-syntax-conf.git
 cd prisma-syntax-conf
 ```
 
