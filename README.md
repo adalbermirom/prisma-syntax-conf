@@ -1,6 +1,8 @@
 # 🎨 Prisma Syntax & Editor Configurations
 
-Este repositório contém as configurações de destaque de sintaxe, templates e suporte para a linguagem de programação Prisma em diversos editores de código e IDEs.A instalação é modular e gerenciada por Makefiles específicos, garantindo que você instale apenas o que precisa.
+Este repositório contém as configurações de destaque de sintaxe, templates e suporte para a linguagem de programação Prisma em diversos editores de código e IDEs.
+
+A instalação é modular e gerenciada por Makefiles específicos, garantindo que você instale apenas o que precisa.
 
 ---
 
