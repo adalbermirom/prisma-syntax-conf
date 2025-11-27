@@ -23,9 +23,9 @@ Ele chama os instaladores específicos de cada editor.
 ---
 |  Ação  | Comando | Descrição | 
 |  :---  |  :---  |  :---  | 
-Instalar uma extensão | sudo make install [extensão] |  Copia arquivos para o diretório de sistema (/usr/share/...). Requer sudo. | 
-|Desinstalar uma extensão | sudo make uninstall [extensão] | Remove os arquivos instalados do sistema. | 
-| Empacotar o VS Code | make package vscode | Gera o arquivo .vsix instalável para o VS Code. | 
+Instalar uma extensão | sudo make instalar-[extensão] |  Copia arquivos para o diretório de sistema (/usr/share/...). Requer sudo. | 
+|Desinstalar uma extensão | sudo make remover-[extensão] | Remove os arquivos instalados do sistema. | 
+| Empacotar o VS Code | make vscode | Gera o arquivo .vsix instalável para o VS Code. | 
 | Ajuda | make help | Lista todas as extensões válidas e comandos. | 
 
 ## 📥 Extensões Disponíveis
@@ -57,10 +57,11 @@ cd prisma-syntax-conf
 
 2. Instalar Múltiplas Extensões
 
-Instalar o suporte para Nano e Geany:
+Instalar o suporte para Nano, Geany e Micro:
 ```bash
-sudo make install nano
-sudo make install geany
+sudo make instalar-nano
+sudo make instalar-geany
+sudo make instalar-micro
 ```
 
 
@@ -68,7 +69,7 @@ sudo make install geany
 
 Se você estiver desenvolvendo ou quiser distribuir a extensão VS Code:
 ```bash
-make package vscode
+make vscode
 ```
 O arquivo .vsix será gerado na raiz da pasta vscode-prisma/.
 
