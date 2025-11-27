@@ -1,88 +1,76 @@
-# Define os utilitários de sistema e a variável SUDO
-SUDO ?= 
-MAKE := /usr/bin/make # Garante que o make seja chamado corretamente
+# =============================================================================
+# MASTER MAKEFILE - PRISMA SYNTAX CONFIG
+# =============================================================================
 
-# Mapeamento de Opções para Pastas. (Opção: Pasta)
-# Note que 'gsv' é um alias comum para 'gtksourceview-2.0'
-MAP = \
-	geany:Geany \
-	nano:nano \
-	gsv:gtksourceview-2.0 \
-	micro:micro \
-	vscode:vscode-prisma
+# Definição dos diretórios (Verifique se o nome das pastas está exato aqui)
+DIR_NANO    = nano
+DIR_GEANY   = Geany
+DIR_MICRO   = micro
+DIR_GSV     = gtksourceview-2.0
+DIR_VSCODE  = vscode-prisma
 
-# ------------------------------------------------
-# Regras Principais (Alvo: install, uninstall, package)
-# ------------------------------------------------
+# Garante que 'make' use o binário correto
+MAKE := make
 
-.PHONY: install uninstall package clean help
+# Alvos que não são arquivos
+.PHONY: help all nano geany micro gsv vscode clean
 
-# make install [aplicativo]
-# Exemplo: make install geany
-install:
-	@if [ "$$#" -eq 0 ]; then \
-		echo "ERRO: Especifique a extensão a ser instalada (ex: make install geany)"; \
-		exit 1; \
-	fi; \
-	@app_name=$(shell echo $(filter-out $@,$(MAKECMDGOALS)) | awk '{print $$1}'); \
-	@dir_name=$(shell echo $(MAP) | tr ' ' '\n' | grep ^$$app_name: | cut -d: -f2); \
-	if [ -z "$$dir_name" ]; then \
-		echo "ERRO: Extensão $$app_name não reconhecida. Opções válidas: geany, nano, gsv, micro, vscode"; \
-		exit 1; \
-	fi; \
-	@echo "=========================================================="; \
-	echo " INICIANDO INSTALAÇÃO: $$(echo $$app_name | tr '[:lower:]' '[:upper:]')"; \
-	echo "=========================================================="; \
-	$(MAKE) -C $$dir_name install SUDO=$(SUDO)
-
-# make uninstall [aplicativo]
-uninstall:
-	@if [ "$$#" -eq 0 ]; then \
-		echo "ERRO: Especifique a extensão a ser desinstalada (ex: make uninstall geany)"; \
-		exit 1; \
-	fi; \
-	@app_name=$(shell echo $(filter-out $@,$(MAKECMDGOALS)) | awk '{print $$1}'); \
-	@dir_name=$(shell echo $(MAP) | tr ' ' '\n' | grep ^$$app_name: | cut -d: -f2); \
-	if [ -z "$$dir_name" ]; then \
-		echo "ERRO: Extensão $$app_name não reconhecida. Opções válidas: geany, nano, gsv, micro, vscode"; \
-		exit 1; \
-	fi; \
-	@echo "=========================================================="; \
-	echo " INICIANDO DESINSTALAÇÃO: $$(echo $$app_name | tr '[:lower:]' '[:upper:]')"; \
-	echo "=========================================================="; \
-	$(MAKE) -C $$dir_name uninstall SUDO=$(SUDO)
-
-# ------------------------------------------------
-# Regras Específicas
-# ------------------------------------------------
-
-# make package vscode
-package:
-	@app_name=$(shell echo $(filter-out $@,$(MAKECMDGOALS)) | awk '{print $$1}'); \
-	if [ "$$app_name" != "vscode" ]; then \
-		echo "ERRO: O comando 'package' só é válido para 'vscode' (make package vscode)"; \
-		exit 1; \
-	fi; \
-	$(MAKE) -C vscode-prisma package
-
-# make clean [aplicativo]
-clean:
-	@app_name=$(shell echo $(filter-out $@,$(MAKECMDGOALS)) | awk '{print $$1}'); \
-	@dir_name=$(shell echo $(MAP) | tr ' ' '\n' | grep ^$$app_name: | cut -d: -f2); \
-	if [ -z "$$dir_name" ]; then \
-		echo "ERRO: Extensão $$app_name não reconhecida. Opções válidas: geany, nano, gsv, micro, vscode"; \
-		exit 1; \
-	fi; \
-	$(MAKE) -C $$dir_name clean
-
+# -----------------------------------------------------------------------------
+# Regra Padrão (Help)
+# -----------------------------------------------------------------------------
 help:
-	@echo "--- Comandos de Instalação Mestra ---"
-	@echo "make install [extensão] : Instala a extensão. (Requer sudo para a maioria)"
-	@echo "make uninstall [extensão] : Remove a extensão instalada."
-	@echo "make package vscode : Empacota a extensão do VS Code para distribuição (.vsix)."
+	@echo "--- Instalador de Sintaxe Prisma ---"
+	@echo "Use 'sudo make <editor>' para instalar."
 	@echo ""
-	@echo "Extensões válidas: geany, nano, gsv, micro, vscode"
+	@echo "Comandos disponíveis:"
+	@echo "  sudo make nano     : Instala extensão para Nano"
+	@echo "  sudo make geany    : Instala extensão para Geany"
+	@echo "  sudo make micro    : Instala extensão para Micro"
+	@echo "  sudo make gsv      : Instala para GtkSourceView (Gedit, Xed, etc)"
+	@echo "  sudo make vscode   : Gera o pacote .vsix para VS Code"
+	@echo ""
+	@echo "  make clean         : Limpa arquivos temporários em todas as pastas"
 
-# Captura os argumentos extras para que 'make' os processe
-%:
-	@:
+# -----------------------------------------------------------------------------
+# Regras de Instalação (Executam o makefile de cada pasta)
+# -----------------------------------------------------------------------------
+
+# 1. NANO
+nano:
+	@echo ">>> Instalando suporte para NANO..."
+	$(MAKE) -C $(DIR_NANO) install
+
+# 2. GEANY
+geany:
+	@echo ">>> Instalando suporte para GEANY..."
+	$(MAKE) -C $(DIR_GEANY) install
+
+# 3. MICRO
+micro:
+	@echo ">>> Instalando suporte para MICRO..."
+	$(MAKE) -C $(DIR_MICRO) install
+
+# 4. GTKSOURCEVIEW (Gedit, Xed, Mousepad)
+gsv:
+	@echo ">>> Instalando suporte para GTKSOURCEVIEW..."
+	$(MAKE) -C $(DIR_GSV) install
+
+# -----------------------------------------------------------------------------
+# Regras de Empacotamento (VS Code)
+# -----------------------------------------------------------------------------
+
+# 5. VS CODE (Gera .vsix, não instala no sistema)
+vscode:
+	@echo ">>> Gerando pacote VSIX para VS CODE..."
+	$(MAKE) -C $(DIR_VSCODE) package
+
+# -----------------------------------------------------------------------------
+# Limpeza Geral
+# -----------------------------------------------------------------------------
+clean:
+	@echo ">>> Limpando todos os diretórios..."
+	-$(MAKE) -C $(DIR_NANO) clean
+	-$(MAKE) -C $(DIR_GEANY) clean
+	-$(MAKE) -C $(DIR_MICRO) clean
+	-$(MAKE) -C $(DIR_GSV) clean
+	-$(MAKE) -C $(DIR_VSCODE) clean
