@@ -1,74 +1,104 @@
 # =============================================================================
 # MASTER MAKEFILE - PRISMA SYNTAX CONFIG
 # =============================================================================
+# Padrão de uso: sudo make instalar-[editor] ou sudo make remover-[editor]
+# =============================================================================
 
-# Definição dos diretórios (Verifique se o nome das pastas está exato aqui)
+# --- Definição dos Diretórios ---
 DIR_NANO    = nano
 DIR_GEANY   = Geany
 DIR_MICRO   = micro
 DIR_GSV     = gtksourceview-2.0
 DIR_VSCODE  = vscode-prisma
 
-# Garante que 'make' use o binário correto
+# Garante o binário make correto
 MAKE := make
 
-# Alvos que não são arquivos
-.PHONY: help all nano geany micro gsv vscode clean
+# --- Ajuda (Help) ---
+.PHONY: help clean
 
-# -----------------------------------------------------------------------------
-# Regra Padrão (Help)
-# -----------------------------------------------------------------------------
 help:
-	@echo "--- Instalador de Sintaxe Prisma ---"
-	@echo "Use 'sudo make <editor>' para instalar."
+	@echo "--- Gerenciador de Sintaxe Prisma ---"
+	@echo "Uso: sudo make [comando]"
 	@echo ""
-	@echo "Comandos disponíveis:"
-	@echo "  sudo make nano     : Instala extensão para Nano"
-	@echo "  sudo make geany    : Instala extensão para Geany"
-	@echo "  sudo make micro    : Instala extensão para Micro"
-	@echo "  sudo make gsv      : Instala para GtkSourceView (Gedit, Xed, etc)"
-	@echo "  sudo make vscode   : Gera o pacote .vsix para VS Code"
+	@echo "NANO:"
+	@echo "  make instalar-nano    : Instala extensão"
+	@echo "  make remover-nano     : Remove extensão"
 	@echo ""
-	@echo "  make clean         : Limpa arquivos temporários em todas as pastas"
+	@echo "GEANY:"
+	@echo "  make instalar-geany   : Instala extensão"
+	@echo "  make remover-geany    : Remove extensão"
+	@echo ""
+	@echo "MICRO:"
+	@echo "  make instalar-micro   : Instala extensão"
+	@echo "  make remover-micro    : Remove extensão"
+	@echo ""
+	@echo "GTKSOURCEVIEW (Gedit/Xed):"
+	@echo "  make instalar-gsv     : Instala extensão"
+	@echo "  make remover-gsv      : Remove extensão"
+	@echo ""
+	@echo "VS CODE:"
+	@echo "  make vscode           : Gera o pacote .vsix"
+	@echo ""
+	@echo "GERAL:"
+	@echo "  make clean            : Limpa arquivos temporários"
 
-# -----------------------------------------------------------------------------
-# Regras de Instalação (Executam o makefile de cada pasta)
-# -----------------------------------------------------------------------------
-
-# 1. NANO
-nano:
-	@echo ">>> Instalando suporte para NANO..."
+# =============================================================================
+# REGRAS PARA O NANO
+# =============================================================================
+instalar-nano:
+	@echo ">>> Instalando NANO..."
 	$(MAKE) -C $(DIR_NANO) install
 
-# 2. GEANY
-geany:
-	@echo ">>> Instalando suporte para GEANY..."
+remover-nano:
+	@echo ">>> Removendo NANO..."
+	$(MAKE) -C $(DIR_NANO) uninstall
+
+# =============================================================================
+# REGRAS PARA O GEANY
+# =============================================================================
+instalar-geany:
+	@echo ">>> Instalando GEANY..."
 	$(MAKE) -C $(DIR_GEANY) install
 
-# 3. MICRO
-micro:
-	@echo ">>> Instalando suporte para MICRO..."
+remover-geany:
+	@echo ">>> Removendo GEANY..."
+	$(MAKE) -C $(DIR_GEANY) uninstall
+
+# =============================================================================
+# REGRAS PARA O MICRO
+# =============================================================================
+instalar-micro:
+	@echo ">>> Instalando MICRO..."
 	$(MAKE) -C $(DIR_MICRO) install
 
-# 4. GTKSOURCEVIEW (Gedit, Xed, Mousepad)
-gsv:
-	@echo ">>> Instalando suporte para GTKSOURCEVIEW..."
+remover-micro:
+	@echo ">>> Removendo MICRO..."
+	$(MAKE) -C $(DIR_MICRO) uninstall
+
+# =============================================================================
+# REGRAS PARA O GTKSOURCEVIEW (GSV)
+# =============================================================================
+instalar-gsv:
+	@echo ">>> Instalando GTKSOURCEVIEW..."
 	$(MAKE) -C $(DIR_GSV) install
 
-# -----------------------------------------------------------------------------
-# Regras de Empacotamento (VS Code)
-# -----------------------------------------------------------------------------
+remover-gsv:
+	@echo ">>> Removendo GTKSOURCEVIEW..."
+	$(MAKE) -C $(DIR_GSV) uninstall
 
-# 5. VS CODE (Gera .vsix, não instala no sistema)
+# =============================================================================
+# REGRAS PARA O VS CODE (Apenas empacotamento)
+# =============================================================================
 vscode:
-	@echo ">>> Gerando pacote VSIX para VS CODE..."
+	@echo ">>> Gerando pacote VSIX..."
 	$(MAKE) -C $(DIR_VSCODE) package
 
-# -----------------------------------------------------------------------------
-# Limpeza Geral
-# -----------------------------------------------------------------------------
+# =============================================================================
+# LIMPEZA GERAL
+# =============================================================================
 clean:
-	@echo ">>> Limpando todos os diretórios..."
+	@echo ">>> Limpando tudo..."
 	-$(MAKE) -C $(DIR_NANO) clean
 	-$(MAKE) -C $(DIR_GEANY) clean
 	-$(MAKE) -C $(DIR_MICRO) clean
