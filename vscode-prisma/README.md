@@ -41,11 +41,11 @@ Será gerado o arquivo `prisma-1.0.0.vsix`, então siga as intruções de instal
 
 * Abra o VS Code e pressione `Ctrl+Shift+X`, na janela que abrir clique nos três pontos.
 
-    ![img](./images/instal1.png)
+    ![img](./src/images/instal1.png)
 
 * No menu que abrir clique em: `install from VSIX`
  
-    ![img](./images/instal2.png)
+    ![img](./src/images/instal2.png)
     
 * Navegue até o arquivo `prisma-1.0.0.vsix` e o selecione.
 
