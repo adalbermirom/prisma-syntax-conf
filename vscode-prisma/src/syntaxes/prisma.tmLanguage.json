@@ -1,1 +1,483 @@
-{"information_for_contributors":["This file has been converted from https://github.com/sumneko/prisma.tmbundle/blob/master/Syntaxes/Lua.plist","If you want to provide a fix or improvement, please create a pull request against the original repository.","Once accepted there, we are happy to receive an update request."],"version":"https://github.com/sumneko/prisma.tmbundle/commit/3a18700941737c3ab66ac5964696f141aee61800","name":"Prisma","scopeName":"source.prisma","patterns":[{"begin":"\\b(?:(local)\\s+)?(function)\\b(?![,:])","beginCaptures":{"1":{"name":"keyword.local.prisma"},"2":{"name":"keyword.control.prisma"}},"end":"(?<=[\\)\\-{}\\[\\]\"'])","name":"meta.function.prisma","patterns":[{"include":"#comment"},{"begin":"(\\()","beginCaptures":{"1":{"name":"punctuation.definition.parameters.begin.prisma"}},"end":"(\\))|(?=[\\-\\.{}\\[\\]\"'])","endCaptures":{"1":{"name":"punctuation.definition.parameters.finish.prisma"}},"name":"meta.parameter.prisma","patterns":[{"include":"#comment"},{"match":"[a-zA-Z_][a-zA-Z0-9_]*","name":"variable.parameter.function.prisma"},{"match":",","name":"punctuation.separator.arguments.prisma"},{"begin":":","beginCaptures":{"0":{"name":"punctuation.separator.arguments.prisma"}},"end":"(?=[\\),])","patterns":[{"include":"#emmydoc.type"}]}]},{"match":"\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b\\s*(?=:)","name":"entity.name.class.prisma"},{"match":"\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b","name":"entity.name.function.prisma"}]},{"match":"(?<![\\w\\d.])0[xX][0-9A-Fa-f]+(\\.[0-9A-Fa-f]*)?([eE]-?\\d*)?([pP][-+]\\d+)?","name":"constant.numeric.float.hexadecimal.prisma"},{"match":"(?<![\\w\\d.])0[xX]\\.[0-9A-Fa-f]+([eE]-?\\d*)?([pP][-+]\\d+)?","name":"constant.numeric.float.hexadecimal.prisma"},{"match":"(?<![\\w\\d.])0[xX][0-9A-Fa-f]+(?![pPeE.0-9])","name":"constant.numeric.integer.hexadecimal.prisma"},{"match":"(?<![\\w\\d.])\\d+(\\.\\d*)?([eE]-?\\d*)?","name":"constant.numeric.float.prisma"},{"match":"(?<![\\w\\d.])\\.\\d+([eE]-?\\d*)?","name":"constant.numeric.float.prisma"},{"match":"(?<![\\w\\d.])\\d+(?![pPeE.0-9])","name":"constant.numeric.integer.prisma"},{"include":"#string"},{"captures":{"1":{"name":"punctuation.definition.comment.prisma"}},"match":"\\A(#!).*$\\n?","name":"comment.line.shebang.prisma"},{"include":"#comment"},{"captures":{"1":{"name":"keyword.control.goto.prisma"},"2":{"name":"string.tag.prisma"}},"match":"\\b(goto)\\s+([a-zA-Z_][a-zA-Z0-9_]*)"},{"captures":{"1":{"name":"punctuation.section.embedded.begin.prisma"},"2":{"name":"punctuation.section.embedded.end.prisma"}},"match":"(::)\\s*[a-zA-Z_][a-zA-Z0-9_]*\\s*(::)","name":"string.tag.prisma"},{"match":"<\\s*(const|close)\\s*>","captures":{"1":{"name":"string.tag.prisma"}}},{"match":"\\<[a-zA-Z_\\*][a-zA-Z0-9_\\.\\*\\-]*\\>","name":"storage.type.generic.prisma"},{"match":"\\b(quebre|inicio|início|senao|senão|para|se|senãose|senaose|vapara|retorne|entao|então|repita|enquanto|ate|até|fim|em)\\b","name":"keyword.control.prisma"},{"match":"\\b(local|global)\\b","name":"keyword.local.prisma"},{"match":"\\b(funcao|função)\\b(?![,:])","name":"keyword.control.prisma"},{"match":"(?<![^.]\\.|:)\\b(falso|nulo(?!:)|verdadeiro|_ENV|_G|_VERSAO|mat\\.(pi|infinito|maxinteiro|mininteiro)|utf8\\.charpattern|es\\.(leitura|escrita|erro)|pacote\\.(config|clib|carregado|loaders|plib|precarregado|buscadores))\\b|(?<![.])\\.{3}(?!\\.)","name":"constant.language.prisma"},{"match":"(?<![^.]\\.|:)\\b(este)\\b","name":"variable.language.self.prisma"},{"match":"(?<![^.]\\.|:)\\b(carregue|leia|selecione|proximo|tamanho|igual|tipo|pchame|xpchame|imprima|executearquivo|convstring|B|poe|prismadir|F|_VERSAO|executestring|def|N|erro|defmetatabela|S|U|T|car|V|cod|carreguearquivo|compile|convnumero|Th|tente|contador|obtmetatabela|imprimaf|_INFO|desempacote|escolha|pares|inclua|Classe|obt|ipares|coletelixo)\\b(?!\\s*=(?!=))","name":"support.function.prisma"},{"match":"(?<![^.]\\.|:)\\b(async)\\b(?!\\s*=(?!=))","name":"entity.name.tag.prisma"},{"match":"(?<![^.]\\.|:)\\b(corrotina\\.(exec|yield|estado|crie|wrap|executando)|string\\.(capte|maiuscula|troque|inverta|car|tamanho|junte|formate|procure|dec_hex|minuscula|apare|hex|compile|analise|cod|base64|sub|dec_base64|entrecar|corte|substring|byte|nconcat|separe)|tabela\\.(concat|desempacote|insira|remova|ordene|empacote)|mat\\.(cosseno|arredondeacima|seno|emRadianos|xrandonico|aleatorio|arcoseno|cmodulo|frexp|corte|arredondeabaixo|randonico|cossenoh|arredonde|arcotangente2|exp|raizcubica|xaleatorio|infinito|minimo|elevado|tangente|log|hipot|tangenteh|maximo|raizquad|emGrau|arcotangente|arcocosseno|raiz|separe|absoluto|pi|ldexp|senoh)|es\\.(feche|esvazie|entrada|linhas|abra|saida|pabra|leia|tmparquivo|tipo|escreva|busque|defvbuf|)|sis\\.(nome|relogio|nome_arquivo|tempo|deflocal|nometmp|diftempo|remova|renomeie|caminho_absoluto|saia|execute|data|defvarambiente|durma|obtvarambiente|tamanho)|pacote\\.(pasta|plib|clib|config|importe)|debug\\.(getlocal|debug|getupvalue|getinfo|setmetatable|setlocal|sethook|setupvalue|upvalueid|getregistry|traceback|getuservalue|gethook|getmetatable|upvaluejoin|setuservalue)|bit32\\.(arshift|bou|rrotate|bxou|lshift|replace|bnao|rshift|lrotate|extract|bteste|be)|utf8\\.(cod|byte|troque|cods|ncasecmp|titulo|minuscula|proximo|largindex|corte|pontocod|charpattern|offset|separe|escape|maiuscula|larg|carpos|car|capte|fold|inverta|procure|insira|tamanho|remova))\\b(?!\\s*=(?!=))","name":"support.function.library.prisma"},{"match":"\\b(e|ou|nao|não|\\|\\||\\&\\&|\\!)\\b","name":"keyword.operator.prisma"},{"match":"\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(?=\\s*(?:[({\"']|\\[\\[))","name":"support.function.any-method.prisma"},{"match":"\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(?=\\s*\\??:)","name":"entity.name.class.prisma"},{"match":"(?<=[^.]\\.|:)\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(?!\\s*=\\s*\\b(function)\\b)","name":"entity.other.attribute.prisma"},{"match":"\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(?!\\s*=\\s*\\b(function)\\b)","name":"variable.other.prisma"},{"match":"\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(?=\\s*=\\s*\\b(function)\\b)","name":"entity.name.function.prisma"},{"match":"\\+|-|%|#|\\*|\\/|\\^|==?|~=|!=|<=?|>=?|(?<!\\.)\\.{2}(?!\\.)","name":"keyword.operator.prisma"}],"repository":{"escaped_char":{"patterns":[{"match":"\\\\[abfnrtv\\\\\"'\\n]","name":"constant.character.escape.prisma"},{"match":"\\\\z[\\n\\t ]*","name":"constant.character.escape.prisma"},{"match":"\\\\\\d{1,3}","name":"constant.character.escape.byte.prisma"},{"match":"\\\\x[0-9A-Fa-f][0-9A-Fa-f]","name":"constant.character.escape.byte.prisma"},{"match":"\\\\u\\{[0-9A-Fa-f]+\\}","name":"constant.character.escape.unicode.prisma"},{"match":"\\\\.","name":"invalid.illegal.character.escape.prisma"}]},"string":{"patterns":[{"begin":"'","beginCaptures":{"0":{"name":"punctuation.definition.string.begin.prisma"}},"end":"'[ \\t]*|(?=\\n)","endCaptures":{"0":{"name":"punctuation.definition.string.end.prisma"}},"name":"string.quoted.single.prisma","patterns":[{"include":"#escaped_char"}]},{"begin":"\"","beginCaptures":{"0":{"name":"punctuation.definition.string.begin.prisma"}},"end":"\"[ \\t]*|(?=\\n)","endCaptures":{"0":{"name":"punctuation.definition.string.end.prisma"}},"name":"string.quoted.double.prisma","patterns":[{"include":"#escaped_char"}]},{"begin":"`","beginCaptures":{"0":{"name":"punctuation.definition.string.begin.prisma"}},"end":"`[ \\t]*|(?=\\n)","endCaptures":{"0":{"name":"punctuation.definition.string.end.prisma"}},"name":"string.quoted.double.prisma"},{"begin":"(?<=\\.cdef)\\s*(\\[(=*)\\[)","beginCaptures":{"0":{"name":"string.quoted.other.multiline.prisma"},"1":{"name":"punctuation.definition.string.begin.prisma"}},"contentName":"meta.embedded.prisma","end":"(\\]\\2\\])[ \\t]*","endCaptures":{"0":{"name":"string.quoted.other.multiline.prisma"},"1":{"name":"punctuation.definition.string.end.prisma"}},"patterns":[{"include":"source.c"}]},{"begin":"(?<!--)\\[(=*)\\[","beginCaptures":{"0":{"name":"punctuation.definition.string.begin.prisma"}},"end":"\\]\\1\\][ \\t]*","endCaptures":{"0":{"name":"punctuation.definition.string.end.prisma"}},"name":"string.quoted.other.multiline.prisma"}]},"comment":{"patterns":[{"begin":"(^[ \\t]+)?(?=--)","beginCaptures":{"1":{"name":"punctuation.whitespace.comment.leading.prisma"}},"end":"(?!\\G)((?!^)[ \\t]+\\n)?","endCaptures":{"1":{"name":"punctuation.whitespace.comment.trailing.prisma"}},"patterns":[{"begin":"--\\[(=*)\\[","beginCaptures":{"0":{"name":"punctuation.definition.comment.begin.prisma"}},"end":"\\]\\1\\]","endCaptures":{"0":{"name":"punctuation.definition.comment.end.prisma"}},"name":"comment.block.prisma","patterns":[{"include":"#emmydoc"},{"include":"#ldoc_tag"}]},{"begin":"----","beginCaptures":{"0":{"name":"punctuation.definition.comment.prisma"}},"end":"\\n","name":"comment.line.double-dash.prisma"},{"begin":"---","beginCaptures":{"0":{"name":"punctuation.definition.comment.prisma"}},"end":"\\n","name":"comment.line.double-dash.documentation.prisma","patterns":[{"include":"#emmydoc"},{"include":"#ldoc_tag"}]},{"begin":"--","beginCaptures":{"0":{"name":"punctuation.definition.comment.prisma"}},"end":"\\n","name":"comment.line.double-dash.prisma","patterns":[{"include":"#ldoc_tag"}]}]},{"begin":"\\/\\*","beginCaptures":{"0":{"name":"punctuation.definition.comment.begin.prisma"}},"end":"\\*\\/","endCaptures":{"0":{"name":"punctuation.definition.comment.end.prisma"}},"name":"comment.block.prisma","patterns":[{"include":"#emmydoc"},{"include":"#ldoc_tag"}]}]},"emmydoc":{"patterns":[{"begin":"(?<=---[ \\t]*)@class","beginCaptures":{"0":{"name":"storage.type.annotation.prisma"}},"end":"(?=[\\n@#])","patterns":[{"match":"\\b([a-zA-Z_\\*][a-zA-Z0-9_\\.\\*\\-]*)","name":"support.class.prisma"},{"match":":|,","name":"keyword.operator.prisma"}]},{"begin":"(?<=---[ \\t]*)@enum","beginCaptures":{"0":{"name":"storage.type.annotation.prisma"}},"end":"(?=[\\n@#])","patterns":[{"begin":"\\b([a-zA-Z_\\*][a-zA-Z0-9_\\.\\*\\-]*)","beginCaptures":{"0":{"name":"variable.prisma"}},"end":"(?=\\n)"}]},{"begin":"(?<=---[ \\t]*)@type","beginCaptures":{"0":{"name":"storage.type.annotation.prisma"}},"end":"(?=[\\n@#])","patterns":[{"include":"#emmydoc.type"}]},{"begin":"(?<=---[ \\t]*)@alias","beginCaptures":{"0":{"name":"storage.type.annotation.prisma"}},"end":"(?=[\\n@#])","patterns":[{"begin":"\\b([a-zA-Z_\\*][a-zA-Z0-9_\\.\\*\\-]*)","beginCaptures":{"0":{"name":"variable.prisma"}},"end":"(?=[\\n#])","patterns":[{"include":"#emmydoc.type"}]}]},{"begin":"(?<=---[ \\t]*)(@operator)\\s*(\\b[a-z]+)?","beginCaptures":{"1":{"name":"storage.type.annotation.prisma"},"2":{"name":"support.function.library.prisma"}},"end":"(?=[\\n@#])","patterns":[{"include":"#emmydoc.type"}]},{"begin":"(?<=---[ \\t]*)@cast","beginCaptures":{"0":{"name":"storage.type.annotation.prisma"}},"end":"(?=[\\n@#])","patterns":[{"begin":"\\b([a-zA-Z_\\*][a-zA-Z0-9_\\.\\*\\-]*)","beginCaptures":{"0":{"name":"variable.other.prisma"}},"end":"(?=\\n)","patterns":[{"include":"#emmydoc.type"},{"match":"([+-|])","name":"keyword.operator.prisma"}]}]},{"begin":"(?<=---[ \\t]*)@param","beginCaptures":{"0":{"name":"storage.type.annotation.prisma"}},"end":"(?=[\\n@#])","patterns":[{"begin":"\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(\\??)","beginCaptures":{"1":{"name":"entity.name.variable.prisma"},"2":{"name":"keyword.operator.prisma"}},"end":"(?=[\\n#])","patterns":[{"include":"#emmydoc.type"}]}]},{"begin":"(?<=---[ \\t]*)@return","beginCaptures":{"0":{"name":"storage.type.annotation.prisma"}},"end":"(?=[\\n@#])","patterns":[{"match":"\\?","name":"keyword.operator.prisma"},{"include":"#emmydoc.type"}]},{"begin":"(?<=---[ \\t]*)@field","beginCaptures":{"0":{"name":"storage.type.annotation.prisma"}},"end":"(?=[\\n@#])","patterns":[{"begin":"(\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b|(\\[))(\\??)","beginCaptures":{"2":{"name":"entity.name.variable.prisma"},"3":{"name":"keyword.operator.prisma"}},"end":"(?=[\\n#])","patterns":[{"include":"#string"},{"include":"#emmydoc.type"},{"match":"\\]","name":"keyword.operator.prisma"}]}]},{"begin":"(?<=---[ \\t]*)@generic","beginCaptures":{"0":{"name":"storage.type.annotation.prisma"}},"end":"(?=[\\n@#])","patterns":[{"begin":"\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b","beginCaptures":{"0":{"name":"storage.type.generic.prisma"}},"end":"(?=\\n)|(,)","endCaptures":{"0":{"name":"keyword.operator.prisma"}},"patterns":[{"match":":","name":"keyword.operator.prisma"},{"include":"#emmydoc.type"}]}]},{"begin":"(?<=---[ \\t]*)@vararg","beginCaptures":{"0":{"name":"storage.type.annotation.prisma"}},"end":"(?=[\\n@#])","patterns":[{"include":"#emmydoc.type"}]},{"begin":"(?<=---[ \\t]*)@overload","beginCaptures":{"0":{"name":"storage.type.annotation.prisma"}},"end":"(?=[\\n@#])","patterns":[{"include":"#emmydoc.type"}]},{"begin":"(?<=---[ \\t]*)@deprecated","beginCaptures":{"0":{"name":"storage.type.annotation.prisma"}},"end":"(?=[\\n@#])"},{"begin":"(?<=---[ \\t]*)@meta","beginCaptures":{"0":{"name":"storage.type.annotation.prisma"}},"end":"(?=[\\n@#])"},{"begin":"(?<=---[ \\t]*)@private","beginCaptures":{"0":{"name":"storage.type.annotation.prisma"}},"end":"(?=[\\n@#])"},{"begin":"(?<=---[ \\t]*)@protected","beginCaptures":{"0":{"name":"storage.type.annotation.prisma"}},"end":"(?=[\\n@#])"},{"begin":"(?<=---[ \\t]*)@package","beginCaptures":{"0":{"name":"storage.type.annotation.prisma"}},"end":"(?=[\\n@#])"},{"begin":"(?<=---[ \\t]*)@version","beginCaptures":{"0":{"name":"storage.type.annotation.prisma"}},"end":"(?=[\\n@#])","patterns":[{"match":"\\b(5\\.1|5\\.2|5\\.3|5\\.4|JIT)\\b","name":"support.class.prisma"},{"match":",|\\>|\\<","name":"keyword.operator.prisma"}]},{"begin":"(?<=---[ \\t]*)@see","beginCaptures":{"0":{"name":"storage.type.annotation.prisma"}},"end":"(?=[\\n@#])","patterns":[{"match":"\\b([a-zA-Z_\\*][a-zA-Z0-9_\\.\\*\\-]*)","name":"support.class.prisma"},{"match":"#","name":"keyword.operator.prisma"}]},{"begin":"(?<=---[ \\t]*)@diagnostic","beginCaptures":{"0":{"name":"storage.type.annotation.prisma"}},"end":"(?=[\\n@#])","patterns":[{"begin":"([a-zA-Z_\\-0-9]+)[ \\t]*(:)?","beginCaptures":{"1":{"name":"keyword.other.unit"},"2":{"name":"keyword.operator.unit"}},"end":"(?=\\n)","patterns":[{"match":"\\b([a-zA-Z_\\*][a-zA-Z0-9_\\-]*)","name":"support.class.prisma"},{"match":",","name":"keyword.operator.prisma"}]}]},{"begin":"(?<=---[ \\t]*)@module","beginCaptures":{"0":{"name":"storage.type.annotation.prisma"}},"end":"(?=[\\n@#])","patterns":[{"include":"#string"}]},{"match":"(?<=---[ \\t]*)@(async|nodiscard)","name":"storage.type.annotation.prisma"},{"begin":"(?<=---)\\|\\s*[\\>\\+]?","beginCaptures":{"0":{"name":"storage.type.annotation.prisma"}},"end":"(?=[\\n@#])","patterns":[{"include":"#string"}]}]},"emmydoc.type":{"patterns":[{"begin":"\\bfun\\b","beginCaptures":{"0":{"name":"keyword.control.prisma"}},"end":"(?=[\\s#])","patterns":[{"match":"[\\(\\),:\\?][ \\t]*","name":"keyword.operator.prisma"},{"match":"([a-zA-Z_][a-zA-Z0-9_\\.\\*\\[\\]\\<\\>\\,\\-]*)(?<!,)[ \\t]*(?=\\??:)","name":"entity.name.variable.prisma"},{"include":"#emmydoc.type"},{"include":"#string"}]},{"match":"\\<[a-zA-Z_\\*][a-zA-Z0-9_\\.\\*\\-]*\\>","name":"storage.type.generic.prisma"},{"match":"\\basync\\b","name":"entity.name.tag.prisma"},{"match":"[\\{\\}\\:\\,\\?\\|\\`][ \\t]*","name":"keyword.operator.prisma"},{"begin":"(?=[a-zA-Z_\\.\\*\"'\\[])","end":"(?=[\\s\\)\\,\\?\\:\\}\\|#])","patterns":[{"match":"([a-zA-Z0-9_\\.\\*\\[\\]\\<\\>\\,\\-]+)(?<!,)[ \\t]*","name":"support.type.prisma"},{"match":"(\\.\\.\\.)[ \\t]*","name":"constant.language.prisma"},{"include":"#string"}]}]},"ldoc_tag":{"match":"\\G[ \\t]*(@)(alias|annotation|author|charset|class|classmod|comment|constructor|copyright|description|example|export|factory|field|file|fixme|function|include|lfunction|license|local|module|name|param|pragma|private|raise|release|return|script|section|see|set|static|submodule|summary|tfield|thread|tparam|treturn|todo|topic|type|usage|warning|within)\\b","end":"(?!@)\\b","captures":{"1":{"name":"punctuation.definition.block.tag.ldoc"},"2":{"name":"storage.type.class.ldoc"}}}}}
+{
+    "information_for_contributors": [
+        "This file has been converted from https://github.com/sumneko/prisma.tmbundle/blob/master/Syntaxes/Prisma.plist",
+        "If you want to provide a fix or improvement, please create a pull request against the original repository.",
+        "Once accepted there, we are happy to receive an update request."
+    ],
+    "version": "https://github.com/sumneko/prisma.tmbundle/commit/3a18700941737c3ab66ac5964696f141aee61800",
+    "name": "Prisma",
+    "scopeName": "source.prisma",
+    "patterns": [
+        {
+            "begin": "\\b(?:(local)\\s+)?(function)\\b(?![,:])",
+            "beginCaptures": { "1": { "name": "keyword.local.prisma" }, "2": { "name": "keyword.control.prisma" } },
+            "end": "(?<=[\\)\\-{}\\[\\]\"'])",
+            "name": "meta.function.prisma",
+            "patterns": [
+                { "include": "#comment" },
+                {
+                    "begin": "(\\()",
+                    "beginCaptures": { "1": { "name": "punctuation.definition.parameters.begin.prisma" } },
+                    "end": "(\\))|(?=[\\-\\.{}\\[\\]\"'])",
+                    "endCaptures": { "1": { "name": "punctuation.definition.parameters.finish.prisma" } },
+                    "name": "meta.parameter.prisma",
+                    "patterns": [
+                        { "include": "#comment" },
+                        { "match": "[a-zA-Z_][a-zA-Z0-9_]*", "name": "variable.parameter.function.prisma" },
+                        { "match": ",", "name": "punctuation.separator.arguments.prisma" },
+                        {
+                            "begin": ":",
+                            "beginCaptures": { "0": { "name": "punctuation.separator.arguments.prisma" } },
+                            "end": "(?=[\\),])",
+                            "patterns": [{ "include": "#emmydoc.type" }]
+                        }
+                    ]
+                },
+                { "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b\\s*(?=:)", "name": "entity.name.class.prisma" },
+                { "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b", "name": "entity.name.function.prisma" }
+            ]
+        },
+        {
+            "match": "(?<![\\w\\d.])0[xX][0-9A-Fa-f]+(\\.[0-9A-Fa-f]*)?([eE]-?\\d*)?([pP][-+]\\d+)?",
+            "name": "constant.numeric.float.hexadecimal.prisma"
+        },
+        {
+            "match": "(?<![\\w\\d.])0[xX]\\.[0-9A-Fa-f]+([eE]-?\\d*)?([pP][-+]\\d+)?",
+            "name": "constant.numeric.float.hexadecimal.prisma"
+        },
+        {
+            "match": "(?<![\\w\\d.])0[xX][0-9A-Fa-f]+(?![pPeE.0-9])",
+            "name": "constant.numeric.integer.hexadecimal.prisma"
+        },
+        { "match": "(?<![\\w\\d.])\\d+(\\.\\d*)?([eE]-?\\d*)?", "name": "constant.numeric.float.prisma" },
+        { "match": "(?<![\\w\\d.])\\.\\d+([eE]-?\\d*)?", "name": "constant.numeric.float.prisma" },
+        { "match": "(?<![\\w\\d.])\\d+(?![pPeE.0-9])", "name": "constant.numeric.integer.prisma" },
+        { "include": "#string" },
+        {
+            "captures": { "1": { "name": "punctuation.definition.comment.prisma" } },
+            "match": "\\A(#!).*$\\n?",
+            "name": "comment.line.shebang.prisma"
+        },
+        { "include": "#comment" },
+        {
+            "captures": { "1": { "name": "keyword.control.goto.prisma" }, "2": { "name": "string.tag.prisma" } },
+            "match": "\\b(goto)\\s+([a-zA-Z_][a-zA-Z0-9_]*)"
+        },
+        {
+            "captures": {
+                "1": { "name": "punctuation.section.embedded.begin.prisma" },
+                "2": { "name": "punctuation.section.embedded.end.prisma" }
+            },
+            "match": "(::)\\s*[a-zA-Z_][a-zA-Z0-9_]*\\s*(::)",
+            "name": "string.tag.prisma"
+        },
+        { "match": "<\\s*(const|close)\\s*>", "captures": { "1": { "name": "string.tag.prisma" } } },
+        { "match": "\\<[a-zA-Z_\\*][a-zA-Z0-9_\\.\\*\\-]*\\>", "name": "storage.type.generic.prisma" },
+        {
+            "match": "\\b(quebre|inicio|início|senao|senão|para|se|senãose|senaose|vapara|retorne|entao|então|repita|enquanto|ate|até|fim|em)\\b",
+            "name": "keyword.control.prisma"
+        },
+        { "match": "\\b(local|global)\\b", "name": "keyword.local.prisma" },
+        { "match": "\\b(funcao|função)\\b(?![,:])", "name": "keyword.control.prisma" },
+        {
+            "match": "(?<![^.]\\.|:)\\b(falso|nulo(?!:)|verdadeiro|_ENV|_G|_VERSAO|mat\\.(pi|infinito|maxinteiro|mininteiro)|utf8\\.charpattern|es\\.(leitura|escrita|erro)|pacote\\.(config|clib|carregado|loaders|plib|precarregado|buscadores))\\b|(?<![.])\\.{3}(?!\\.)",
+            "name": "constant.language.prisma"
+        },
+        { "match": "(?<![^.]\\.|:)\\b(este)\\b", "name": "variable.language.self.prisma" },
+        {
+            "match": "(?<![^.]\\.|:)\\b(carregue|leia|selecione|proximo|tamanho|igual|tipo|pchame|xpchame|imprima|executearquivo|convstring|B|poe|prismadir|F|_VERSAO|executestring|def|N|erro|defmetatabela|S|U|T|car|V|cod|carreguearquivo|compile|convnumero|Th|tente|contador|obtmetatabela|imprimaf|_INFO|desempacote|escolha|pares|inclua|Classe|obt|ipares|coletelixo)\\b(?!\\s*=(?!=))",
+            "name": "support.function.prisma"
+        },
+        { "match": "(?<![^.]\\.|:)\\b(async)\\b(?!\\s*=(?!=))", "name": "entity.name.tag.prisma" },
+        {
+            "match": "(?<![^.]\\.|:)\\b(corrotina\\.(exec|yield|estado|crie|wrap|executando)|string\\.(capte|maiuscula|troque|inverta|car|tamanho|junte|formate|procure|dec_hex|minuscula|apare|hex|compile|analise|cod|base64|sub|dec_base64|entrecar|corte|substring|byte|nconcat|separe)|tabela\\.(concat|desempacote|insira|remova|ordene|empacote)|mat\\.(cosseno|arredondeacima|seno|emRadianos|xrandonico|aleatorio|arcoseno|cmodulo|frexp|corte|arredondeabaixo|randonico|cossenoh|arredonde|arcotangente2|exp|raizcubica|xaleatorio|infinito|minimo|elevado|tangente|log|hipot|tangenteh|maximo|raizquad|emGrau|arcotangente|arcocosseno|raiz|separe|absoluto|pi|ldexp|senoh)|es\\.(feche|esvazie|entrada|linhas|abra|saida|pabra|leia|tmparquivo|tipo|escreva|busque|defvbuf|)|sis\\.(nome|relogio|nome_arquivo|tempo|deflocal|nometmp|diftempo|remova|renomeie|caminho_absoluto|saia|execute|data|defvarambiente|durma|obtvarambiente|tamanho)|pacote\\.(pasta|plib|clib|config|importe)|debug\\.(getlocal|debug|getupvalue|getinfo|setmetatable|setlocal|sethook|setupvalue|upvalueid|getregistry|traceback|getuservalue|gethook|getmetatable|upvaluejoin|setuservalue)|bit32\\.(arshift|bou|rrotate|bxou|lshift|replace|bnao|rshift|lrotate|extract|bteste|be)|utf8\\.(cod|byte|troque|cods|ncasecmp|titulo|minuscula|proximo|largindex|corte|pontocod|charpattern|offset|separe|escape|maiuscula|larg|carpos|car|capte|fold|inverta|procure|insira|tamanho|remova))\\b(?!\\s*=(?!=))",
+            "name": "support.function.library.prisma"
+        },
+        { "match": "\\b(e|ou|nao|não|\\|\\||\\&\\&|\\!)\\b", "name": "keyword.operator.prisma" },
+        {
+            "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(?=\\s*(?:[({\"']|\\[\\[))",
+            "name": "support.function.any-method.prisma"
+        },
+        { "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(?=\\s*\\??:)", "name": "entity.name.class.prisma" },
+        {
+            "match": "(?<=[^.]\\.|:)\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(?!\\s*=\\s*\\b(function)\\b)",
+            "name": "entity.other.attribute.prisma"
+        },
+        { "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(?!\\s*=\\s*\\b(function)\\b)", "name": "variable.other.prisma" },
+        {
+            "match": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(?=\\s*=\\s*\\b(function)\\b)",
+            "name": "entity.name.function.prisma"
+        },
+        { "match": "\\+|-|%|#|\\*|\\/|\\^|==?|~=|!=|<=?|>=?|(?<!\\.)\\.{2}(?!\\.)", "name": "keyword.operator.prisma" }
+    ],
+    "repository": {
+        "escaped_char": {
+            "patterns": [
+                { "match": "\\\\[abfnrtv\\\\\"'\\n]", "name": "constant.character.escape.prisma" },
+                { "match": "\\\\z[\\n\\t ]*", "name": "constant.character.escape.prisma" },
+                { "match": "\\\\\\d{1,3}", "name": "constant.character.escape.byte.prisma" },
+                { "match": "\\\\x[0-9A-Fa-f][0-9A-Fa-f]", "name": "constant.character.escape.byte.prisma" },
+                { "match": "\\\\u\\{[0-9A-Fa-f]+\\}", "name": "constant.character.escape.unicode.prisma" },
+                { "match": "\\\\.", "name": "invalid.illegal.character.escape.prisma" }
+            ]
+        },
+        "string": {
+            "patterns": [
+                {
+                    "begin": "'",
+                    "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.prisma" } },
+                    "end": "'[ \\t]*|(?=\\n)",
+                    "endCaptures": { "0": { "name": "punctuation.definition.string.end.prisma" } },
+                    "name": "string.quoted.single.prisma",
+                    "patterns": [{ "include": "#escaped_char" }]
+                },
+                {
+                    "begin": "\"",
+                    "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.prisma" } },
+                    "end": "\"[ \\t]*|(?=\\n)",
+                    "endCaptures": { "0": { "name": "punctuation.definition.string.end.prisma" } },
+                    "name": "string.quoted.double.prisma",
+                    "patterns": [{ "include": "#escaped_char" }]
+                },
+                {
+                    "begin": "`",
+                    "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.prisma" } },
+                    "end": "`[ \\t]*|(?=\\n)",
+                    "endCaptures": { "0": { "name": "punctuation.definition.string.end.prisma" } },
+                    "name": "string.quoted.double.prisma"
+                },
+                {
+                    "begin": "(?<=\\.cdef)\\s*(\\[(=*)\\[)",
+                    "beginCaptures": {
+                        "0": { "name": "string.quoted.other.multiline.prisma" },
+                        "1": { "name": "punctuation.definition.string.begin.prisma" }
+                    },
+                    "contentName": "meta.embedded.prisma",
+                    "end": "(\\]\\2\\])[ \\t]*",
+                    "endCaptures": {
+                        "0": { "name": "string.quoted.other.multiline.prisma" },
+                        "1": { "name": "punctuation.definition.string.end.prisma" }
+                    },
+                    "patterns": [{ "include": "source.c" }]
+                },
+                {
+                    "begin": "(?<!--)\\[(=*)\\[",
+                    "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.prisma" } },
+                    "end": "\\]\\1\\][ \\t]*",
+                    "endCaptures": { "0": { "name": "punctuation.definition.string.end.prisma" } },
+                    "name": "string.quoted.other.multiline.prisma"
+                }
+            ]
+        },
+        "comment": {
+            "patterns": [
+                {
+                    "begin": "(^[ \\t]+)?(?=--)",
+                    "beginCaptures": { "1": { "name": "punctuation.whitespace.comment.leading.prisma" } },
+                    "end": "(?!\\G)((?!^)[ \\t]+\\n)?",
+                    "endCaptures": { "1": { "name": "punctuation.whitespace.comment.trailing.prisma" } },
+                    "patterns": [
+                        {
+                            "begin": "--\\[(=*)\\[",
+                            "beginCaptures": { "0": { "name": "punctuation.definition.comment.begin.prisma" } },
+                            "end": "\\]\\1\\]",
+                            "endCaptures": { "0": { "name": "punctuation.definition.comment.end.prisma" } },
+                            "name": "comment.block.prisma",
+                            "patterns": [{ "include": "#emmydoc" }, { "include": "#ldoc_tag" }]
+                        },
+                        {
+                            "begin": "----",
+                            "beginCaptures": { "0": { "name": "punctuation.definition.comment.prisma" } },
+                            "end": "\\n",
+                            "name": "comment.line.double-dash.prisma"
+                        },
+                        {
+                            "begin": "---",
+                            "beginCaptures": { "0": { "name": "punctuation.definition.comment.prisma" } },
+                            "end": "\\n",
+                            "name": "comment.line.double-dash.documentation.prisma",
+                            "patterns": [{ "include": "#emmydoc" }, { "include": "#ldoc_tag" }]
+                        },
+                        {
+                            "begin": "--",
+                            "beginCaptures": { "0": { "name": "punctuation.definition.comment.prisma" } },
+                            "end": "\\n",
+                            "name": "comment.line.double-dash.prisma",
+                            "patterns": [{ "include": "#ldoc_tag" }]
+                        }
+                    ]
+                },
+                {
+                    "begin": "\\/\\*",
+                    "beginCaptures": { "0": { "name": "punctuation.definition.comment.begin.prisma" } },
+                    "end": "\\*\\/",
+                    "endCaptures": { "0": { "name": "punctuation.definition.comment.end.prisma" } },
+                    "name": "comment.block.prisma",
+                    "patterns": [{ "include": "#emmydoc" }, { "include": "#ldoc_tag" }]
+                },
+                {
+                    "begin": "//",
+                    "beginCaptures": { "0": { "name": "punctuation.definition.comment.prisma" } },
+                    "end": "\\n",
+                    "name": "comment.line.double-dash.prisma"
+               }
+            ]
+        },
+        "emmydoc": {
+            "patterns": [
+                {
+                    "begin": "(?<=---[ \\t]*)@class",
+                    "beginCaptures": { "0": { "name": "storage.type.annotation.prisma" } },
+                    "end": "(?=[\\n@#])",
+                    "patterns": [
+                        { "match": "\\b([a-zA-Z_\\*][a-zA-Z0-9_\\.\\*\\-]*)", "name": "support.class.prisma" },
+                        { "match": ":|,", "name": "keyword.operator.prisma" }
+                    ]
+                },
+                {
+                    "begin": "(?<=---[ \\t]*)@enum",
+                    "beginCaptures": { "0": { "name": "storage.type.annotation.prisma" } },
+                    "end": "(?=[\\n@#])",
+                    "patterns": [
+                        {
+                            "begin": "\\b([a-zA-Z_\\*][a-zA-Z0-9_\\.\\*\\-]*)",
+                            "beginCaptures": { "0": { "name": "variable.prisma" } },
+                            "end": "(?=\\n)"
+                        }
+                    ]
+                },
+                {
+                    "begin": "(?<=---[ \\t]*)@type",
+                    "beginCaptures": { "0": { "name": "storage.type.annotation.prisma" } },
+                    "end": "(?=[\\n@#])",
+                    "patterns": [{ "include": "#emmydoc.type" }]
+                },
+                {
+                    "begin": "(?<=---[ \\t]*)@alias",
+                    "beginCaptures": { "0": { "name": "storage.type.annotation.prisma" } },
+                    "end": "(?=[\\n@#])",
+                    "patterns": [
+                        {
+                            "begin": "\\b([a-zA-Z_\\*][a-zA-Z0-9_\\.\\*\\-]*)",
+                            "beginCaptures": { "0": { "name": "variable.prisma" } },
+                            "end": "(?=[\\n#])",
+                            "patterns": [{ "include": "#emmydoc.type" }]
+                        }
+                    ]
+                },
+                {
+                    "begin": "(?<=---[ \\t]*)(@operator)\\s*(\\b[a-z]+)?",
+                    "beginCaptures": {
+                        "1": { "name": "storage.type.annotation.prisma" },
+                        "2": { "name": "support.function.library.prisma" }
+                    },
+                    "end": "(?=[\\n@#])",
+                    "patterns": [{ "include": "#emmydoc.type" }]
+                },
+                {
+                    "begin": "(?<=---[ \\t]*)@cast",
+                    "beginCaptures": { "0": { "name": "storage.type.annotation.prisma" } },
+                    "end": "(?=[\\n@#])",
+                    "patterns": [
+                        {
+                            "begin": "\\b([a-zA-Z_\\*][a-zA-Z0-9_\\.\\*\\-]*)",
+                            "beginCaptures": { "0": { "name": "variable.other.prisma" } },
+                            "end": "(?=\\n)",
+                            "patterns": [
+                                { "include": "#emmydoc.type" },
+                                { "match": "([+-|])", "name": "keyword.operator.prisma" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "begin": "(?<=---[ \\t]*)@param",
+                    "beginCaptures": { "0": { "name": "storage.type.annotation.prisma" } },
+                    "end": "(?=[\\n@#])",
+                    "patterns": [
+                        {
+                            "begin": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b(\\??)",
+                            "beginCaptures": {
+                                "1": { "name": "entity.name.variable.prisma" },
+                                "2": { "name": "keyword.operator.prisma" }
+                            },
+                            "end": "(?=[\\n#])",
+                            "patterns": [{ "include": "#emmydoc.type" }]
+                        }
+                    ]
+                },
+                {
+                    "begin": "(?<=---[ \\t]*)@return",
+                    "beginCaptures": { "0": { "name": "storage.type.annotation.prisma" } },
+                    "end": "(?=[\\n@#])",
+                    "patterns": [{ "match": "\\?", "name": "keyword.operator.prisma" }, { "include": "#emmydoc.type" }]
+                },
+                {
+                    "begin": "(?<=---[ \\t]*)@field",
+                    "beginCaptures": { "0": { "name": "storage.type.annotation.prisma" } },
+                    "end": "(?=[\\n@#])",
+                    "patterns": [
+                        {
+                            "begin": "(\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b|(\\[))(\\??)",
+                            "beginCaptures": {
+                                "2": { "name": "entity.name.variable.prisma" },
+                                "3": { "name": "keyword.operator.prisma" }
+                            },
+                            "end": "(?=[\\n#])",
+                            "patterns": [
+                                { "include": "#string" },
+                                { "include": "#emmydoc.type" },
+                                { "match": "\\]", "name": "keyword.operator.prisma" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "begin": "(?<=---[ \\t]*)@generic",
+                    "beginCaptures": { "0": { "name": "storage.type.annotation.prisma" } },
+                    "end": "(?=[\\n@#])",
+                    "patterns": [
+                        {
+                            "begin": "\\b([a-zA-Z_][a-zA-Z0-9_]*)\\b",
+                            "beginCaptures": { "0": { "name": "storage.type.generic.prisma" } },
+                            "end": "(?=\\n)|(,)",
+                            "endCaptures": { "0": { "name": "keyword.operator.prisma" } },
+                            "patterns": [
+                                { "match": ":", "name": "keyword.operator.prisma" },
+                                { "include": "#emmydoc.type" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "begin": "(?<=---[ \\t]*)@vararg",
+                    "beginCaptures": { "0": { "name": "storage.type.annotation.prisma" } },
+                    "end": "(?=[\\n@#])",
+                    "patterns": [{ "include": "#emmydoc.type" }]
+                },
+                {
+                    "begin": "(?<=---[ \\t]*)@overload",
+                    "beginCaptures": { "0": { "name": "storage.type.annotation.prisma" } },
+                    "end": "(?=[\\n@#])",
+                    "patterns": [{ "include": "#emmydoc.type" }]
+                },
+                {
+                    "begin": "(?<=---[ \\t]*)@deprecated",
+                    "beginCaptures": { "0": { "name": "storage.type.annotation.prisma" } },
+                    "end": "(?=[\\n@#])"
+                },
+                {
+                    "begin": "(?<=---[ \\t]*)@meta",
+                    "beginCaptures": { "0": { "name": "storage.type.annotation.prisma" } },
+                    "end": "(?=[\\n@#])"
+                },
+                {
+                    "begin": "(?<=---[ \\t]*)@private",
+                    "beginCaptures": { "0": { "name": "storage.type.annotation.prisma" } },
+                    "end": "(?=[\\n@#])"
+                },
+                {
+                    "begin": "(?<=---[ \\t]*)@protected",
+                    "beginCaptures": { "0": { "name": "storage.type.annotation.prisma" } },
+                    "end": "(?=[\\n@#])"
+                },
+                {
+                    "begin": "(?<=---[ \\t]*)@package",
+                    "beginCaptures": { "0": { "name": "storage.type.annotation.prisma" } },
+                    "end": "(?=[\\n@#])"
+                },
+                {
+                    "begin": "(?<=---[ \\t]*)@version",
+                    "beginCaptures": { "0": { "name": "storage.type.annotation.prisma" } },
+                    "end": "(?=[\\n@#])",
+                    "patterns": [
+                        { "match": "\\b(5\\.1|5\\.2|5\\.3|5\\.4|JIT)\\b", "name": "support.class.prisma" },
+                        { "match": ",|\\>|\\<", "name": "keyword.operator.prisma" }
+                    ]
+                },
+                {
+                    "begin": "(?<=---[ \\t]*)@see",
+                    "beginCaptures": { "0": { "name": "storage.type.annotation.prisma" } },
+                    "end": "(?=[\\n@#])",
+                    "patterns": [
+                        { "match": "\\b([a-zA-Z_\\*][a-zA-Z0-9_\\.\\*\\-]*)", "name": "support.class.prisma" },
+                        { "match": "#", "name": "keyword.operator.prisma" }
+                    ]
+                },
+                {
+                    "begin": "(?<=---[ \\t]*)@diagnostic",
+                    "beginCaptures": { "0": { "name": "storage.type.annotation.prisma" } },
+                    "end": "(?=[\\n@#])",
+                    "patterns": [
+                        {
+                            "begin": "([a-zA-Z_\\-0-9]+)[ \\t]*(:)?",
+                            "beginCaptures": {
+                                "1": { "name": "keyword.other.unit" },
+                                "2": { "name": "keyword.operator.unit" }
+                            },
+                            "end": "(?=\\n)",
+                            "patterns": [
+                                { "match": "\\b([a-zA-Z_\\*][a-zA-Z0-9_\\-]*)", "name": "support.class.prisma" },
+                                { "match": ",", "name": "keyword.operator.prisma" }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "begin": "(?<=---[ \\t]*)@module",
+                    "beginCaptures": { "0": { "name": "storage.type.annotation.prisma" } },
+                    "end": "(?=[\\n@#])",
+                    "patterns": [{ "include": "#string" }]
+                },
+                { "match": "(?<=---[ \\t]*)@(async|nodiscard)", "name": "storage.type.annotation.prisma" },
+                {
+                    "begin": "(?<=---)\\|\\s*[\\>\\+]?",
+                    "beginCaptures": { "0": { "name": "storage.type.annotation.prisma" } },
+                    "end": "(?=[\\n@#])",
+                    "patterns": [{ "include": "#string" }]
+                }
+            ]
+        },
+        "emmydoc.type": {
+            "patterns": [
+                {
+                    "begin": "\\bfun\\b",
+                    "beginCaptures": { "0": { "name": "keyword.control.prisma" } },
+                    "end": "(?=[\\s#])",
+                    "patterns": [
+                        { "match": "[\\(\\),:\\?][ \\t]*", "name": "keyword.operator.prisma" },
+                        {
+                            "match": "([a-zA-Z_][a-zA-Z0-9_\\.\\*\\[\\]\\<\\>\\,\\-]*)(?<!,)[ \\t]*(?=\\??:)",
+                            "name": "entity.name.variable.prisma"
+                        },
+                        { "include": "#emmydoc.type" },
+                        { "include": "#string" }
+                    ]
+                },
+                { "match": "\\<[a-zA-Z_\\*][a-zA-Z0-9_\\.\\*\\-]*\\>", "name": "storage.type.generic.prisma" },
+                { "match": "\\basync\\b", "name": "entity.name.tag.prisma" },
+                { "match": "[\\{\\}\\:\\,\\?\\|\\`][ \\t]*", "name": "keyword.operator.prisma" },
+                {
+                    "begin": "(?=[a-zA-Z_\\.\\*\"'\\[])",
+                    "end": "(?=[\\s\\)\\,\\?\\:\\}\\|#])",
+                    "patterns": [
+                        {
+                            "match": "([a-zA-Z0-9_\\.\\*\\[\\]\\<\\>\\,\\-]+)(?<!,)[ \\t]*",
+                            "name": "support.type.prisma"
+                        },
+                        { "match": "(\\.\\.\\.)[ \\t]*", "name": "constant.language.prisma" },
+                        { "include": "#string" }
+                    ]
+                }
+            ]
+        },
+        "ldoc_tag": {
+            "match": "\\G[ \\t]*(@)(alias|annotation|author|charset|class|classmod|comment|constructor|copyright|description|example|export|factory|field|file|fixme|function|include|lfunction|license|local|module|name|param|pragma|private|raise|release|return|script|section|see|set|static|submodule|summary|tfield|thread|tparam|treturn|todo|topic|type|usage|warning|within)\\b",
+            "end": "(?!@)\\b",
+            "captures": {
+                "1": { "name": "punctuation.definition.block.tag.ldoc" },
+                "2": { "name": "storage.type.class.ldoc" }
+            }
+        }
+    }
+}
