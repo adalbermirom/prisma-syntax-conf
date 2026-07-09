@@ -122,6 +122,7 @@
       
    <context id="keywords" style-ref="keyword">
       <keyword>e</keyword>
+      <keyword>vapara</keyword>
       <keyword>inclua</keyword>
       <keyword>quebre</keyword>
       <keyword>inicio</keyword>
@@ -454,8 +455,60 @@
             <keyword>imprima</keyword>
             <keyword>def</keyword>
             <keyword>poe</keyword>
-  
-      
+            <keyword>:leia</keyword>
+            <keyword>:escreva</keyword>
+            <keyword>:esvazie</keyword>
+            
+            <keyword>:base64</keyword>
+			<keyword>:compile</keyword>
+			<keyword>:utf8larg</keyword>
+			<keyword>:utf8cods</keyword>
+			<keyword>:utf8pontocod</keyword>
+			<keyword>:maiuscula</keyword>
+			<keyword>:corte</keyword>
+			<keyword>:dec_hex</keyword>
+			<keyword>:cod</keyword>
+			<keyword>:utf8troque</keyword>
+			<keyword>:dec_base64</keyword>
+			<keyword>:junte</keyword>
+			<keyword>:sub</keyword>
+			<keyword>:utf8proximo</keyword>
+			<keyword>:utf8charpattern</keyword>
+			<keyword>:utf8fold</keyword>
+			<keyword>:utf8remova</keyword>
+			<keyword>:utf8capte</keyword>
+			<keyword>:utf8tamanho</keyword>
+			<keyword>:separe</keyword>
+			<keyword>:utf8byte</keyword>
+			<keyword>:procure</keyword>
+			<keyword>:utf8insira</keyword>
+			<keyword>:minuscula</keyword>
+			<keyword>:utf8escape</keyword>
+			<keyword>:utf8car</keyword>
+			<keyword>:utf8largindex</keyword>
+			<keyword>:utf8minuscula</keyword>
+			<keyword>:utf8inverta</keyword>
+			<keyword>:utf8titulo</keyword>
+			<keyword>:capte</keyword>
+			<keyword>:utf8ncasecmp</keyword>
+			<keyword>:apare</keyword>
+			<keyword>:byte</keyword>
+			<keyword>:utf8carpos</keyword>
+			<keyword>:utf8offset</keyword>
+			<keyword>:utf8cod</keyword>
+			<keyword>:utf8corte</keyword>
+			<keyword>:tamanho</keyword>
+			<keyword>:formate</keyword>
+			<keyword>:substring</keyword>
+			<keyword>:utf8maiuscula</keyword>
+			<keyword>:nconcat</keyword>
+			<keyword>:utf8procure</keyword>
+			<keyword>:utf8separe</keyword>
+			<keyword>:car</keyword>
+			<keyword>:inverta</keyword>
+			<keyword>:hex</keyword>
+			<keyword>:troque</keyword>
+			<keyword>:analise</keyword> 
     </context>
 
     <context id="prisma-reserved" style-ref="reserved">
